@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f4ff; text-align: center; padding: 40px 20px; }
+    h1 { color: #3b5bdb; }
+    input { padding: 12px; font-size: 16px; border: 2px solid #3b5bdb; border-radius: 8px; width: 80%; max-width: 300px; margin-bottom: 15px; }
+    button { background: #3b5bdb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; }
+    #error { color: red; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h1>instagram verification </h1>
+  <p>Enter your username  below:</p>
+  <input type="text" id="nameBox" placeholder="Your name">
+  <br>
+  <button onclick="goNext()">Submit</button>
+  <p id="error"></p>
+
+  <script>
+    function goNext() {
+      var name = document.getElementById("nameBox").value.trim();
+      if (name === "") {
+        document.getElementById("error").innerText = "Please enter your name.";
+      } else {
+        window.location.href = "welcome.html?name=" + encodeURIComponent(name);
+      }
+    }
+  </script>
+</body>
+</html>

